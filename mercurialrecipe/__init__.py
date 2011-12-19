@@ -97,9 +97,4 @@ class Recipe(object):
             zc.buildout.easy_install.develop(path, target)
 
         target = self.buildout['buildout']['develop-eggs-directory']
-        if self.paths:
-            for path in self.paths.split():
-                path = os.path.join(self.options['location'], path.strip())
-                _install(path, target)
-        else:
-            _install(self.options['location'], target)
+        _install(self.options['location'], target)

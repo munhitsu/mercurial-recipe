@@ -11,6 +11,8 @@ import os
 import shutil
 import logging
 from mercurial import commands, ui, hg
+import zc.buildout
+
 
 
 def get_repository(location):

@@ -37,8 +37,8 @@ class Recipe(object):
         optional, if set than update is disabled
     """
 
-    def __init__(self, buildout, name, options):
-        self.options = options
+    def __init__(self, buildout, name, options):#
+        self.buildout, self.name, self.options = buildout, name, options
         self.options.setdefault('location',
             os.path.join(buildout.get('buildout') \
                 .get('parts-directory'), name))

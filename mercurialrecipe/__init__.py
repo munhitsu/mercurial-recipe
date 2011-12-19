@@ -65,6 +65,8 @@ class Recipe(object):
         self.log.info("Updating to revision %s" % self.rev)
         if self.rev is not None:
             commands.update(ui.ui(), get_repository(self.destination), rev=self.rev)
+            if self.as_egg:
+                self._install_as_egg()
         return self.destination
 
     def update(self):
@@ -79,7 +81,24 @@ class Recipe(object):
             ))
             commands.pull(ui.ui(), get_repository(self.destination),
                     self.source, update = True)
+            if self.as_egg:
+                self._install_as_egg()
         else:
             # "newest" is also automatically disabled if "offline"
             # is set.
             self.log.info("Pulling is disabled for this part")
+
+    def _install_as_egg(self):
+        """
+        Install clone as development egg.
+        """
+        def _install(path, target):
+            zc.buildout.easy_install.develop(path, target)
+
+        target = self.buildout['buildout']['develop-eggs-directory']
+        if self.paths:
+            for path in self.paths.split():
+                path = os.path.join(self.options['location'], path.strip())
+                _install(path, target)
+        else:
+            _install(self.options['location'], target)

@@ -1,0 +1,6 @@
+.hg/
+.hgignore
+.hgtags
+.idea/
+MercurialRecipe.egg-info/
+*.pyc

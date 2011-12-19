@@ -48,6 +48,7 @@ class Recipe(object):
         self.newest = options.get('newest',
             buildout.get('buildout') \
                 .get('newest', 'true')).lower() != 'false'
+        self.as_egg = options.get('as_egg', 'false').lower() == 'true'
         self.log = logging.getLogger(name)
 
     def install(self):

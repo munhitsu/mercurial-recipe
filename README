@@ -1,0 +1,19 @@
+mercurial-recipe
+================
+
+This is a mercurial recipe for buildout.
+Previous version by Tim Molendijk is registered with pip.
+So to use one need to download it and add directory to develope section in buildout.cfg.
+i.e.:
+
+  [buildout]
+  extensions = buildout.dumppickedversions
+  develop = ../mercurial-recipe
+          .
+  extra-paths =
+
+
+Changes introduced in comparision to baseline
+---------------------------------------------
+- support for specific revision using rev option
+- support for egg creation using as_egg option
